@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/rocketvalley/react-sandbox/master/src/assets/images/icon.jpg" width="135" align="center">
+  <img src="https://cdn.rawgit.com/rocketvalley/react-sandbox/master/src/assets/images/icon.jpg" width="260" align="center">
   <br>
   <br>
 </p>
