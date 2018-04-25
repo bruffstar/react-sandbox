@@ -125,14 +125,13 @@ module.exports = {
 
 More info: [Fixing the "cannot GET /URL" error](https://tylermcginnis.com/react-router-cannot-get-url-refresh)
 
-##### Apache Setup
+#### Apache Setup
 
 To get things working on Apache, we must add a ``.htaccess`` file to always redirect to index.html
-
-The file lives in the ``/src`` directory and is then "copied" into the ``/dist`` folder on build with webpack using ``copy-webpack-plugin``.
 ```
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 ```
+The file lives in the ``/src`` directory and is then "copied" into the ``/dist`` folder on build with webpack using ``copy-webpack-plugin``.
