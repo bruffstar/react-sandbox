@@ -25,6 +25,7 @@
     "open-source"
   ],
   "devDependencies": {
+    "@types/react-router-dom": "^4.2.6",
     "@types/webpack-env": "^1.13.0",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.2",
@@ -45,6 +46,7 @@
     "@types/react": "^15.0.6",
     "@types/react-dom": "^0.14.22",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router-dom": "^4.2.2"
   }
 }

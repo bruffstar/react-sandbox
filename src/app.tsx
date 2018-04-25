@@ -1,14 +1,25 @@
 import * as React from 'react';
+import * as ReactRouter from 'react-router-dom';
 import Counter from './assets/components/Counter';
+import Nav from './assets/components/Nav';
 import './assets/css/app.css';
+
+const Switch = ReactRouter.Switch;
+const Router = ReactRouter.BrowserRouter;
+const Route = ReactRouter.Route;
 
 class App extends React.Component<{}, {}> {
     render() {
         return (
-            <div className="app">
-                <h1>React Sandbox</h1>
-                The count has started: <Counter/>
-            </div>
+            <Router>
+                <div className="app">
+                    <Nav/>
+                    <Switch>
+                        <Route path="/foo" component={Counter}/>
+                        <Route path="/bar" component={Counter}/>
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }

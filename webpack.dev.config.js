@@ -38,6 +38,7 @@ module.exports = {
 		})
 	],
 	devServer: {
+        historyApiFallback: true, // https://tylermcginnis.com/react-router-cannot-get-url-refresh
 		hot: true
 		//Enable this if you want to never refresh (this allows hot-reloading app.tsx, but won't auto-refresh if you change index.tsx)
 		//hotOnly: true
