@@ -8,6 +8,8 @@ const Switch = ReactRouter.Switch;
 const Router = ReactRouter.BrowserRouter;
 const Route = ReactRouter.Route;
 
+
+
 class App extends React.Component<{}, {}> {
     render() {
         return (
@@ -15,8 +17,19 @@ class App extends React.Component<{}, {}> {
                 <div className="app">
                     <Nav/>
                     <Switch>
+                        <Route path="/" component={Counter}/>
                         <Route path="/foo" component={Counter}/>
                         <Route path="/bar" component={Counter}/>
+
+                        {/* The Route below will be used when the request does not match any route above */}
+                        <Route render={function () {
+                            return (
+                                <div>
+                                    <h1>Oops! 404 </h1>
+                                    <p>Page Not Found</p>
+                                </div>
+                            );
+                        }}/>
                     </Switch>
                 </div>
             </Router>

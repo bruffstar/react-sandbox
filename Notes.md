@@ -4,6 +4,28 @@ This file will contain some handy notes and things that I have had to figure out
 
 ### React
 
+#### React Router 404
+Since React Router will be in full control of the app's routes, we need to handle the case when an unknown route is entered into the address bar. Using the ``<Switch/>`` component from React Router, we can specify a ``<Route/>`` at the end with no path property. This is what will be rendered when there are no matches. We could pass a component or we could just render out some DOM directly like in the example below:
+
+```jsx
+<Switch>
+    <Route path="/" component={Home}/>
+    <Route path="/foo" component={Foo}/>
+    <Route path="/bar" component={Bar}/>
+    
+    {/* The Route below will be used when the request does not match any route above */}
+    <Route render={function () {
+        return (
+            <div>
+                <h1>Oops! 404 </h1>
+                <p>Page Not Found</p>
+            </div>
+        );
+    }}/>
+</Switch>
+```  
+
+
 #### Mounting & Unmounting
 
 When a component is mounted, it may do some things during initialization that would be around even after it is unmounted. For example, a click event binding on the document, some DOM manipulation, a timer etc.
