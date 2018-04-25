@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {RouteComponentProps} from 'react-router-dom';
+
 
 interface BarParamData {
     id:number;
 }
 
-class Bar extends React.Component<RouteComponentProps<BarParamData>, {}> {
+class Bar extends React.Component<{}, {}> {
     render() {
         return (
             <div>

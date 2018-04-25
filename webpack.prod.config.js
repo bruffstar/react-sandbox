@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
     ],
     output: {
         filename: '[name].[chunkhash:8].js',
-        publicPath: '',
+        publicPath: '/',
         path: path.resolve(__dirname, 'dist')
     },
     context: path.resolve(__dirname, 'src'),
@@ -62,6 +63,13 @@ module.exports = {
                 screw_ie8: true
             }
         }),
+        new CopyWebpackPlugin([
+            {
+                from: '.htaccess',
+                to: '.htaccess',
+                toType: 'file'
+            },
+        ])
     ],
 
     // When importing a module whose path matches one of the following, just

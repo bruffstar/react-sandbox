@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {RouteComponentProps} from 'react-router-dom';
+
 
 interface FooParamData {
     id:number;
 }
 
-class Foo extends React.Component<RouteComponentProps<FooParamData>, {}> {
+class Foo extends React.Component<any, {}> {
     render() {
         let id = this.props.match.params.id;
 

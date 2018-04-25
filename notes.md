@@ -110,7 +110,7 @@ More info: [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plu
 
 By default, the browser will try to hit the server for the route before JS (react) has had a chance to load and tell it that React Router will be in control of routes.
 
-There are a few ways to get around this, like changing .htaccess (see link below), but since we are using Webpack, it is just a matter of adding a few properties in the config, ``publicPath`` and ``historyApiFallback``.
+We must add a few properties in the webpack config, ``publicPath`` must be set to "/" (dev & production) and for development, if webpack-dev-server is used then we must set ``historyApiFallback`` to true.
 
 ```javascript
 module.exports = {
@@ -124,3 +124,15 @@ module.exports = {
 ```
 
 More info: [Fixing the "cannot GET /URL" error](https://tylermcginnis.com/react-router-cannot-get-url-refresh)
+
+##### Apache Setup
+
+To get things working on Apache, we must add a ``.htaccess`` file to always redirect to index.html
+
+The file lives in the ``/src`` directory and is then "copied" into the ``/dist`` folder on build with webpack using ``copy-webpack-plugin``.
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+```
