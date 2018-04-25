@@ -12,3 +12,18 @@ h1 {
     margin: 0 0 40px;
     padding: 0;
 }
+
+ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+a {
+    color: #5b9eb4;
+    text-decoration: none;
+}
+
+a.active {
+    color: #51808f;
+    font-weight: bold;
+}

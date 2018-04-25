@@ -6,7 +6,6 @@ interface CountState {
 
 let counter = null;
 
-// React.Component<{}:Props, {}:State>
 class Counter extends React.Component<{}, CountState> {
     constructor() {
         super();
