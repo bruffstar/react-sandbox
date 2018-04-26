@@ -10,9 +10,9 @@
 
 ## React Sandbox
 
-This is just a place to play with some react & webpack stuff as I am learning. **Not** for use in production.
+This is just a place to play with some react & webpack stuff as I am learning. **Not** for use in production. 
 
-[View Demo](https://rocketvalley.com/demo/react-sandbox)
+See the [Notes](https://github.com/rocketvalley/react-sandbox/blob/master/notes.md) page for interesting things or view a [Demo](https://rocketvalley.com/demo/react-sandbox) of the latest version.
 
 ### Install
 
