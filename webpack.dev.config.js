@@ -35,7 +35,12 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: 'index.html'
-		})
+		}),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        })
 	],
 	devServer: {
         historyApiFallback: true, // https://tylermcginnis.com/react-router-cannot-get-url-refresh

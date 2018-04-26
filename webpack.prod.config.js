@@ -1,17 +1,23 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const GenerateAssetWebpackPlugin = require('generate-asset-webpack-plugin');
 const path = require('path');
 
+// Update the value below if you would like to run the app in a sub folder. It must start and end with "/" i.e "/path/to/sub/folder/"
+const BASENAME = '/';
+
+function getHtaccessContent() {
+    return 'RewriteEngine on\nRewriteCond %{REQUEST_FILENAME} !-d\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteRule ^(.*)$ index.html?q=$1 [L,QSA]';
+}
+
 module.exports = {
-    // devtool: 'source-map',
     entry: [
         './index.tsx'
     ],
     output: {
         filename: '[name].[chunkhash:8].js',
-        publicPath: '/',
+        publicPath: BASENAME,
         path: path.resolve(__dirname, 'dist')
     },
     context: path.resolve(__dirname, 'src'),
@@ -33,7 +39,8 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
+                NODE_ENV: JSON.stringify('production'),
+                BASENAME: JSON.stringify(BASENAME)
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -63,13 +70,12 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-        new CopyWebpackPlugin([
-            {
-                from: '.htaccess',
-                to: '.htaccess',
-                toType: 'file'
-            },
-        ])
+        new GenerateAssetWebpackPlugin({
+            filename: '.htaccess',
+            fn: (compilation, cb) => {
+                cb(null, getHtaccessContent());
+            }
+        })
     ],
 
     // When importing a module whose path matches one of the following, just

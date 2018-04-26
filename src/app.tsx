@@ -10,12 +10,10 @@ const Switch = ReactRouter.Switch;
 const Router = ReactRouter.BrowserRouter;
 const Route = ReactRouter.Route;
 
-
-
-class App extends React.Component<{}, {}> {
+class App extends React.Component<any, any> {
     render() {
         return (
-            <Router>
+            <Router basename={process.env.BASENAME || "/"}>
                 <div className="app">
                     <Nav/>
                     <Switch>
