@@ -1,16 +1,12 @@
 import * as React from 'react';
-import {RouteComponentProps} from 'react-router-dom';
 import Counter from '../Counter';
 
-interface HomeParamData {
-    id:number;
-}
-
-class Home extends React.Component<RouteComponentProps<HomeParamData>, {}> {
+class Home extends React.Component<{}, {}> {
     render() {
         return (
             <div>
                 <h1>Home Page</h1>
+                <p>Current Environment = {process.env.NODE_ENV}</p>
                 <p>Counter: <Counter/></p>
         </div>
     );

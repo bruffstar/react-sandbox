@@ -21,7 +21,7 @@ See below for an example of how to use route parameters. Note the use of ``exact
 
 ```jsx
 <Switch>   
-    <Route exact path="/foo" component={Foo}/>
+    <Route exact path="/foo" component={About}/>
     <Route path="/foo/:id" render={function (request) {
         return (
             <div>
@@ -49,7 +49,7 @@ interface FooParamData {
     id:number;
 }
 
-class Foo extends React.Component<RouteComponentProps<FooParamData>, {}> {
+class About extends React.Component<RouteComponentProps<FooParamData>, {}> {
    constructor() {
         super();
         
@@ -59,12 +59,12 @@ class Foo extends React.Component<RouteComponentProps<FooParamData>, {}> {
     
     render() {
         return (
-            <span>Here is the Foo ID: {this.props.match.params.id}</span>
+            <span>Here is the About ID: {this.props.match.params.id}</span>
         );
     }
 }
 
-export default Foo;
+export default About;
 
 ``` 
 
@@ -76,7 +76,7 @@ Since React Router will be in full control of the app's routes, we need to handl
 ```jsx
 <Switch>
     <Route path="/" component={Home}/>
-    <Route path="/foo" component={Foo}/>
+    <Route path="/foo" component={About}/>
     <Route path="/bar" component={Bar}/>
     
     {/* The Route below will be used when the request does not match any route above */}
@@ -196,7 +196,7 @@ module.exports = {
 };
 ```
 
-###### Foo.tsx
+###### Aboutut.tsx
 ```jsx
 import * as React from 'react';
 
@@ -204,7 +204,7 @@ function doDevStuff() {
     console.log('Dev Stuff!');
 }
 
-class Foo extends React.Component {
+class About extends React.Component {
     render() {
         let is_dev = process.env.NODE_ENV !== 'production';
 
@@ -217,6 +217,6 @@ class Foo extends React.Component {
     }
 }
 
-export default Foo;
+export default About;
 
 ```
