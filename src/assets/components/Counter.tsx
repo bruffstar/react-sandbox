@@ -4,7 +4,8 @@ interface CountState {
     count:number;
 }
 
-// React.Component<{}:Props, {}:State>
+let counter = null;
+
 class Counter extends React.Component<{}, CountState> {
     constructor() {
         super();
@@ -12,10 +13,16 @@ class Counter extends React.Component<{}, CountState> {
         this.state = {
             count: 0
         };
+    }
 
-        setInterval(() => {
+    componentDidMount() {
+        counter = setInterval(() => {
             this.setState({count: this.state.count + 1});
         }, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(counter);
     }
 
     render() {
