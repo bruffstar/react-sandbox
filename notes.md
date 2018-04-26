@@ -1,6 +1,6 @@
 ## Notes
 
-This file contains some handy notes and things that were figured while learning react/webpack. 
+This file contains some handy notes and things that were figured out while learning react/webpack. 
 
 **Note:** Some react code examples shown below are using typescript (.tsx).
 
@@ -17,11 +17,11 @@ More info: [React Component Mounting And Unmounting](https://learn.co/lessons/re
 ### React Router
 
 #### Route Parameters
-See below for an example of how to use route parameters. Note the use of ``exact`` in the /bar route to avoid conflicts with the nested route, which is simply rendering some DOM and printing the ``:id`` parameter. 
+See below for an example of how to use route parameters. Note the use of ``exact`` in the /foo route to avoid conflicts with the nested route, which is simply rendering some DOM and printing the ``:id`` parameter. 
 
 ```jsx
 <Switch>   
-    <Route exact path="/foo" component={About}/>
+    <Route exact path="/foo" component={Foo}/>
     <Route path="/foo/:id" render={function (request) {
         return (
             <div>
@@ -39,7 +39,7 @@ See below for a look at how to render request parameters in a component. Since w
 
 Also note that the type hinting for a react component accepts two arguments. the first is the type def for props and the second is the type def for state.
 
-In the example below, we just set the state as type ``{}``, however, the props have this type: ``<RouteComponentProps<FooParamData>`` this will tell typescript that the props are of type RouteComponentProps which then required an interface, in this case FooParamData. It is this interface where we can set up our type def for the parameter in question. i.e number, string etc... 
+In the example below, we just set the state as type ``{}``, however, the props have this type: ``<RouteComponentProps<FooParamData>`` this will tell typescript that the props are of type RouteComponentProps which then requires an interface, in this case FooParamData. It is this interface where we can set up our type def for the parameter in question. i.e number, string etc... 
  
 ```jsx
 import * as React from 'react';
@@ -49,7 +49,7 @@ interface FooParamData {
     id:number;
 }
 
-class About extends React.Component<RouteComponentProps<FooParamData>, {}> {
+class Foo extends React.Component<RouteComponentProps<FooParamData>, {}> {
    constructor() {
         super();
         
@@ -59,12 +59,12 @@ class About extends React.Component<RouteComponentProps<FooParamData>, {}> {
     
     render() {
         return (
-            <span>Here is the About ID: {this.props.match.params.id}</span>
+            <span>Here is the Foo ID: {this.props.match.params.id}</span>
         );
     }
 }
 
-export default About;
+export default Foo;
 
 ``` 
 
@@ -76,7 +76,7 @@ Since React Router will be in full control of the app's routes, we need to handl
 ```jsx
 <Switch>
     <Route path="/" component={Home}/>
-    <Route path="/foo" component={About}/>
+    <Route path="/foo" component={Foo}/>
     <Route path="/bar" component={Bar}/>
     
     {/* The Route below will be used when the request does not match any route above */}
@@ -117,7 +117,7 @@ More info: [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plu
 
 By default, the browser will try to hit the server for the route before JS (react) has had a chance to load and tell it that React Router will be in control of routes.
 
-We must add a few properties in the webpack config, ``publicPath`` must be always set and for development, if webpack-dev-server is used then we must set ``historyApiFallback`` to true.
+We must add a few properties in the webpack config. ``publicPath`` must be always set and for development, if webpack-dev-server is used then we must set ``historyApiFallback`` to true.
 
 ```javascript
 module.exports = {
@@ -171,7 +171,7 @@ module.exports = {
 };
 ```
 
-As you can see above, the ``GenerateAssetWebpackPlugin`` is creating a ``.htaccess`` file with the return value of ``getHtaccessContent()``. 
+As you can see above, the ``GenerateAssetWebpackPlugin`` is creating a ``.htaccess`` file using the return value of ``getHtaccessContent()`` as it's content. 
 
 Trying to use an anonymous function directly in the plugin does not work for some reason. The plugin will output the file into the ``/dist`` folder. The cool thing about doing it this way is that the content of the ``.htaccess`` file can now be dynamic and change depending on certain situations. 
 
@@ -196,7 +196,7 @@ module.exports = {
 };
 ```
 
-###### Aboutut.tsx
+###### Foo.tsx
 ```jsx
 import * as React from 'react';
 
@@ -204,7 +204,7 @@ function doDevStuff() {
     console.log('Dev Stuff!');
 }
 
-class About extends React.Component {
+class Foo extends React.Component {
     render() {
         let is_dev = process.env.NODE_ENV !== 'production';
 
@@ -217,6 +217,6 @@ class About extends React.Component {
     }
 }
 
-export default About;
+export default Foo;
 
 ```
