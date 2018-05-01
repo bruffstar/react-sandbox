@@ -1,3 +1,5 @@
+@import "variables";
+
 body, html, #root {
     height: 100%;
     margin: 0 auto;
@@ -6,8 +8,8 @@ body, html, #root {
 .app {
     font-size: 15px;
     text-align: center;
-    background-color: #bee9f7;
-    padding: 40px;
+    background-color: $background;
+    padding: 30px;
     border-radius: 4px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     min-height: 50%;

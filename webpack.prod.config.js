@@ -31,12 +31,17 @@ module.exports = {
                 loader: 'ts-loader'
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader'})
-            },
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: [{loader: 'css-loader'}, {loader: 'sass-loader'}], fallback: 'style-loader'
+                })
+            }
         ]
     },
     plugins: [
+        new ExtractTextPlugin({
+            filename: '[name].[contenthash:8].css'
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
@@ -50,7 +55,6 @@ module.exports = {
                 return module.context && module.context.indexOf('node_modules') >= 0;
             }
         }),
-        new ExtractTextPlugin('[name].[contenthash:8].css'),
         new HtmlWebpackPlugin({
             inject: true,
             template: 'index.html'
@@ -76,14 +80,5 @@ module.exports = {
                 cb(null, getHtaccessContent());
             }
         })
-    ],
-
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        // "react": "React",
-        // "react-dom": "ReactDOM"
-    },
+    ]
 };
