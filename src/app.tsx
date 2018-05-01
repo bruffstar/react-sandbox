@@ -5,7 +5,7 @@ import Home from './assets/components/pages/Home';
 import About from './assets/components/pages/About';
 import UsersPage from './assets/components/pages/UsersPage';
 import User from './assets/components/pages/User';
-import './assets/css/app.css';
+import './assets/scss/app.scss';
 
 const Switch = ReactRouter.Switch;
 const Router = ReactRouter.BrowserRouter;
