@@ -27,6 +27,16 @@ module.exports = {
                 test: /\.scss$/,
                 use: [{loader: 'style-loader'}, {loader: 'css-loader'}, {loader: 'sass-loader'}]
             },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        limit: 1000, // Convert images < 1kb to base64 strings
+                        name: 'images/[name].[ext]'
+                    }
+                }]
+            }
         ]
     },
     plugins: [

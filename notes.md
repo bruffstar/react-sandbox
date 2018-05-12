@@ -14,6 +14,75 @@ It is good practice to "clean up" after the component's lifecycle has come to an
 
 More info: [React Component Mounting And Unmounting](https://learn.co/lessons/react-component-mounting-and-unmounting#unmounting)
 
+#### Using Images in Components
+
+To use images in components, simply import the image and then use that as the "src" of the image. Any images will be lazy-loaded, meaning that the browser will only request the image when it's component is mounted.
+
+For example: 
+```jsx
+import * as React from 'react';
+import * as logo from '../../images/icon.jpg';
+
+class ImageExample extends React.Component<{}, {}> {
+    render() {
+        return (
+            <div>
+                <p>Here is the logo:</p>
+                <img src={logo} alt="React Sandbox"/>
+            </div>
+        );
+    }
+}
+
+export default ImageExample;
+``` 
+
+Importing images into javascript is of course a strange concept but it does work well when using webpack. To make all of this work with webpack we need to use the ``file-loader`` module. This will look at any imported files with extensions defined in the "test" and handle them correctly. In this case, put them in a folder called "images".
+
+```javascript
+module.exports = {
+    module: {
+        loaders: [
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        limit: 1000, // Convert images < 1kb to base64 strings
+                        name: 'images/[name].[hash:8].[ext]'
+                    }
+                }]
+            }
+        ]
+    }
+};
+``` 
+**NOTE**: All images will be put in the same "images" folder. In other words, the folder structure will not be maintained. Need to look into this and see if there are any other approaches. 
+
+The ``limit`` option will tell webpack to just inline really small images, in this case less than 1kb, and convert them to base64 strings. 
+
+TypeScript will throw errors when you try to import images as it does not recognize them as modules. To fix this we must declare all image/media types as modules. This can be stored in a seperate ``.d.ts`` file.
+
+###### Media.d.ts
+```typescript
+declare module "*.jpg" {
+    const value: any;
+    export = value;
+}
+
+declare module "*.jpeg" {
+    const value: any;
+    export = value;
+}
+
+declare module "*.png" {
+    const value: any;
+    export = value;
+}
+
+// etc...
+``` 
+
 ### React Router
 
 #### Route Parameters

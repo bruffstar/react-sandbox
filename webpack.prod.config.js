@@ -35,6 +35,16 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     use: [{loader: 'css-loader'}, {loader: 'sass-loader'}], fallback: 'style-loader'
                 })
+            },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        limit: 1000, // Convert images < 1kb to base64 strings
+                        name: 'images/[name].[hash:8].[ext]'
+                    }
+                }]
             }
         ]
     },
